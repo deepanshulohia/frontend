@@ -17,12 +17,12 @@ const ShopContextProvider = (props) => {
 
   // Fetches all products when the component mounts and fetches the user's cart items if there's an authentication token stored in the local storage.
   useEffect(() => {
-    fetch("http://localhost:4000/allproducts")
+    fetch("https://backend-j7dp.onrender.com/allproducts")
       .then((res) => res.json())
       .then((data) => setProducts(data));
 
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/getcart", {
+      fetch("https://backend-j7dp.onrender.com/getcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -62,7 +62,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/addtocart", {
+      fetch("https://backend-j7dp.onrender.com/addtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -83,7 +83,7 @@ This function adds an item to the cart. It increments the quantity of the specif
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("http://localhost:4000/removefromcart", {
+      fetch("https://backend-j7dp.onrender.com/removefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
